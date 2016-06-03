@@ -57,14 +57,6 @@ namespace TicTacToe
 
             if (Block.Text == "") return;
 
-            if (Block.Text.Length == 2)
-            {
-                char tmp = Block.Text[0];
-                Block.Text = "";
-                Block.Text += tmp;
-                return;
-            }
-
             //Handeling if the user typed characters other than X or O.
             if (Block.Text != "X" && Block.Text != "O")
             {
@@ -100,7 +92,7 @@ namespace TicTacToe
                         Paint_Red(Blocks[i, 0], Blocks[i, 1], Blocks[i, 2]);
                         Set_Score(Blocks[i, 0].Text);
                         Reset_Blocks();
-                        break;
+                        return;
                     }
                 }
             }
@@ -114,7 +106,7 @@ namespace TicTacToe
                         Paint_Red(Blocks[0, i], Blocks[1, i], Blocks[2, i]);
                         Set_Score(Blocks[0, i].Text);
                         Reset_Blocks();
-                        break;
+                        return;
                     }
                 }
             }
@@ -205,7 +197,7 @@ namespace TicTacToe
                 block.Text = "";
             }
 
-            //Unvisible label to make let it be the focused control instead of the textbox.
+            //Unvisible label to let it be the focused control instead of any textbox.
             this.ActiveControl = LabelToFocusOn;
         }
         private void PlaySound(string path) //A method to play .wav file at the sent path.
