@@ -18,12 +18,12 @@ namespace TicTacToe
             InitializeComponent();
         }
 
-        TextBox[,] Blocks; // Array of the TextBoxes holding "X" or "O".
+        TextBox[,] Blocks; //A reference to an array of the TextBoxes holding "X" or "O".
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Initializing the array.
-            TextBox[,] Blocks = new TextBox[3, 3]{
+            //Creating the array and initializing it.
+                Blocks = new TextBox[3, 3]{
                 {Block00 , Block01 , Block02},
                 {Block10 , Block11 , Block12},
                 {Block20 , Block21 , Block22}
@@ -57,13 +57,6 @@ namespace TicTacToe
 
             if (Block.Text == "") return;
 
-            //Initializing the array.
-            TextBox[,] Blocks = new TextBox[3, 3]{
-                {Block00 , Block01 , Block02},
-                {Block10 , Block11 , Block12},
-                {Block20 , Block21 , Block22}
-            };
-
             if (Block.Text.Length == 2)
             {
                 char tmp = Block.Text[0];
@@ -84,7 +77,6 @@ namespace TicTacToe
             if (Block.Text.Equals(LastMove)) //Handeling wrong player turn.
             {
                 PlaySound("to2to2to2.wav");
-
                 if (LastMove.Equals("X"))
                     MessageBox.Show("O's Player Move");
                 else
@@ -206,12 +198,6 @@ namespace TicTacToe
         {
             LastMove = null;
 
-            TextBox[,] Blocks = new TextBox[3, 3]{
-                {Block00 , Block01 , Block02},
-                {Block10 , Block11 , Block12},
-                {Block20 , Block21 , Block22}
-            };
-
             foreach (TextBox block in Blocks)
             {
                 block.ForeColor = System.Drawing.Color.Black;
@@ -227,6 +213,5 @@ namespace TicTacToe
             SoundPlayer simpleSound = new SoundPlayer(path);
             simpleSound.Play();
         }
-
     }
 }
