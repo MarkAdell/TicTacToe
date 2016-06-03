@@ -42,10 +42,12 @@
             this.Score_X = new System.Windows.Forms.Label();
             this.Score_O = new System.Windows.Forms.Label();
             this.LabelToFocusOn = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Block00
             // 
+            this.Block00.BackColor = System.Drawing.SystemColors.Window;
             this.Block00.Location = new System.Drawing.Point(60, 52);
             this.Block00.MaxLength = 1;
             this.Block00.Multiline = true;
@@ -129,36 +131,40 @@
             // O_Score
             // 
             this.O_Score.AutoSize = true;
-            this.O_Score.Location = new System.Drawing.Point(57, 343);
+            this.O_Score.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.O_Score.Location = new System.Drawing.Point(26, 343);
             this.O_Score.Name = "O_Score";
-            this.O_Score.Size = new System.Drawing.Size(85, 13);
+            this.O_Score.Size = new System.Drawing.Size(153, 24);
             this.O_Score.TabIndex = 10;
             this.O_Score.Text = "O Player Score :";
             // 
             // X_Score
             // 
             this.X_Score.AutoSize = true;
-            this.X_Score.Location = new System.Drawing.Point(57, 296);
+            this.X_Score.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.X_Score.Location = new System.Drawing.Point(26, 296);
             this.X_Score.Name = "X_Score";
-            this.X_Score.Size = new System.Drawing.Size(83, 13);
+            this.X_Score.Size = new System.Drawing.Size(151, 24);
             this.X_Score.TabIndex = 11;
             this.X_Score.Text = "X Player Score :";
             // 
             // Score_X
             // 
             this.Score_X.AutoSize = true;
-            this.Score_X.Location = new System.Drawing.Point(205, 296);
+            this.Score_X.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.Score_X.Location = new System.Drawing.Point(179, 296);
             this.Score_X.Name = "Score_X";
-            this.Score_X.Size = new System.Drawing.Size(13, 13);
+            this.Score_X.Size = new System.Drawing.Size(21, 24);
             this.Score_X.TabIndex = 12;
             this.Score_X.Text = "0";
             // 
             // Score_O
             // 
             this.Score_O.AutoSize = true;
-            this.Score_O.Location = new System.Drawing.Point(205, 343);
+            this.Score_O.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.Score_O.Location = new System.Drawing.Point(179, 343);
             this.Score_O.Name = "Score_O";
-            this.Score_O.Size = new System.Drawing.Size(13, 13);
+            this.Score_O.Size = new System.Drawing.Size(21, 24);
             this.Score_O.TabIndex = 13;
             this.Score_O.Text = "0";
             // 
@@ -171,12 +177,24 @@
             this.LabelToFocusOn.TabIndex = 14;
             this.LabelToFocusOn.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.button1.Location = new System.Drawing.Point(216, 319);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 32);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Reset Score";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(350, 389);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.LabelToFocusOn);
             this.Controls.Add(this.Score_O);
             this.Controls.Add(this.Score_X);
@@ -215,6 +233,7 @@
         private System.Windows.Forms.Label Score_X;
         private System.Windows.Forms.Label Score_O;
         private System.Windows.Forms.Label LabelToFocusOn;
+        private System.Windows.Forms.Button button1;
     }
 }
 

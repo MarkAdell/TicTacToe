@@ -8,6 +8,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TicTacToe
 {
@@ -29,19 +30,16 @@ namespace TicTacToe
                 {Block20 , Block21 , Block22}
             };
 
-            X_Score.Font = new Font(Font.FontFamily, 15.0F); //X player score label.
-            O_Score.Font = new Font(Font.FontFamily, 15.0F); //O player score label.
-
-            Score_X.Font = new Font(Font.FontFamily, 15.0F); //X player score label that shows score.
-            Score_O.Font = new Font(Font.FontFamily, 15.0F); //O player score label that shows score.
-
             foreach (TextBox block in Blocks) //looping the array.
             {
                 block.Font = new Font("Comic Sans MS", 28.0F, FontStyle.Regular); //Editing font.
                 block.TextAlign = HorizontalAlignment.Center; //Setting the allignment.
                 block.CharacterCasing = CharacterCasing.Upper; //Setting font to UpperCase.
-                block.MaxLength = 1;
+                block.BackColor = Color.DarkCyan; //Settng BackColor
+                block.MaxLength = 1; //User can't type mote than one char.
             }
+
+            GetScoresFromFile();
 
             //Unvisible label to make let it be the focused control instead of the textbox.
             this.ActiveControl = LabelToFocusOn;
@@ -155,9 +153,34 @@ namespace TicTacToe
             }
 
             Block.ReadOnly = true; //Making the user unable to delete once he played.
+
         }
 
-        private void Set_Score(string WinningPlayer) //A method to set the scores and show the winning player.
+        //--------------------------------------------------------------------
+        //                             Methods
+        //--------------------------------------------------------------------
+
+        private void GetScoresFromFile() //A method to retreive the score from the scores file.
+        {
+            using (FileStream fs = new FileStream("Score.txt", FileMode.OpenOrCreate, FileAccess.Read))
+            {
+                using (StreamReader ScoreReader = new StreamReader(fs))
+                {
+                    string Line;
+                    if ((Line = ScoreReader.ReadLine()) != null)
+                    {
+                        string[] splitter = Line.Split(' ');
+                        score_o = int.Parse(splitter[0]);
+                        score_x = int.Parse(splitter[1]);
+                        Score_O.Text = score_o.ToString();
+                        Score_X.Text = score_x.ToString();
+                    }
+                }
+            }
+         }
+
+        //A method to set the scores and show the winning player and edit the score file.
+        private void Set_Score(string WinningPlayer)
         {
             PlaySound("blip.wav");
             if (WinningPlayer == "O")
@@ -174,6 +197,14 @@ namespace TicTacToe
                 Score_X.Text = "";
                 Score_X.Text = score_x.ToString();
             }
+
+            using (FileStream fs = new FileStream("Score.txt", FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                using (StreamWriter ScoreWriter = new StreamWriter(fs))
+                {
+                    ScoreWriter.WriteLine(score_o.ToString() + " " + score_x.ToString());
+                }
+            }
         }
 
         //A method to paint the given blocks red, called when a player wins.
@@ -182,9 +213,9 @@ namespace TicTacToe
             block1.ReadOnly = false;
             block2.ReadOnly = false;
             block3.ReadOnly = false;
-            block1.ForeColor = System.Drawing.Color.Red;
-            block2.ForeColor = System.Drawing.Color.Red;
-            block3.ForeColor = System.Drawing.Color.Red;
+            block1.ForeColor = System.Drawing.Color.White;
+            block2.ForeColor = System.Drawing.Color.White;
+            block3.ForeColor = System.Drawing.Color.White;
         }
 
         private void Reset_Blocks() //A method to reset everything , called when a player wins.
@@ -205,6 +236,22 @@ namespace TicTacToe
         {
             SoundPlayer simpleSound = new SoundPlayer(path);
             simpleSound.Play();
+        }
+
+        private void Reset_Button_Click(object sender, EventArgs e) //When reset score is clicked.
+        {
+            score_o = 0;
+            score_x = 0;
+            Score_X.Text = "0";
+            Score_O.Text = "0";
+
+            using (FileStream fs = new FileStream("Score.txt", FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                using (StreamWriter ScoreWriter = new StreamWriter(fs))
+                {
+                    ScoreWriter.WriteLine("0 0");
+                }
+            }
         }
     }
 }
