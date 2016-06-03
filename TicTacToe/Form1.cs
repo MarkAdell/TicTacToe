@@ -22,7 +22,7 @@ namespace TicTacToe
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Creating the array and initializing it.
+                //Creating the array of textboxes and initializing it.
                 Blocks = new TextBox[3, 3]{
                 {Block00 , Block01 , Block02},
                 {Block10 , Block11 , Block12},
@@ -151,6 +151,7 @@ namespace TicTacToe
                 PlaySound("blip.wav");
                 MessageBox.Show("Draw!");
                 Reset_Blocks();
+                return;
             }
 
             Block.ReadOnly = true; //Making the user unable to delete once he played.
