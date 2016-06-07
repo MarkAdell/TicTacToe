@@ -87,7 +87,7 @@ namespace TicTacToe
                 {
                     if (Blocks[i, 0].Text.Equals(Blocks[i, 1].Text) && Blocks[i, 1].Text.Equals(Blocks[i, 2].Text))
                     {
-                        Paint_Red(Blocks[i, 0], Blocks[i, 1], Blocks[i, 2]);
+                        Paint_White(Blocks[i, 0], Blocks[i, 1], Blocks[i, 2]);
                         Set_Score(Blocks[i, 0].Text);
                         Reset_Blocks();
                         return;
@@ -101,7 +101,7 @@ namespace TicTacToe
                 {
                     if (Blocks[0, i].Text.Equals(Blocks[1, i].Text) && Blocks[1, i].Text.Equals(Blocks[2, i].Text))
                     {
-                        Paint_Red(Blocks[0, i], Blocks[1, i], Blocks[2, i]);
+                        Paint_White(Blocks[0, i], Blocks[1, i], Blocks[2, i]);
                         Set_Score(Blocks[0, i].Text);
                         Reset_Blocks();
                         return;
@@ -113,7 +113,7 @@ namespace TicTacToe
             {
                 if (Blocks[0, 0].Text.Equals(Blocks[1, 1].Text) && Blocks[1, 1].Text.Equals(Blocks[2, 2].Text))
                 {
-                    Paint_Red(Blocks[0, 0], Blocks[1, 1], Blocks[2, 2]);
+                    Paint_White(Blocks[0, 0], Blocks[1, 1], Blocks[2, 2]);
                     Set_Score(Blocks[0, 0].Text);
                     Reset_Blocks();
                     return;
@@ -121,7 +121,7 @@ namespace TicTacToe
 
                 if (Blocks[0, 2].Text.Equals(Blocks[1, 1].Text) && Blocks[1, 1].Text.Equals(Blocks[2, 0].Text))
                 {
-                    Paint_Red(Blocks[0, 2], Blocks[1, 1], Blocks[2, 0]);
+                    Paint_White(Blocks[0, 2], Blocks[1, 1], Blocks[2, 0]);
                     Set_Score(Blocks[0, 2].Text);
                     Reset_Blocks();
                     return;
@@ -207,8 +207,8 @@ namespace TicTacToe
             }
         }
 
-        //A method to paint the given blocks red, called when a player wins.
-        private void Paint_Red(TextBox block1, TextBox block2, TextBox block3)
+        //A method to paint the given blocks white, called when a player wins.
+        private void Paint_White(TextBox block1, TextBox block2, TextBox block3)
         {
             block1.ReadOnly = false;
             block2.ReadOnly = false;
